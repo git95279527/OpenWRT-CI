@@ -26,14 +26,9 @@ jobs:
       - name: Get Kernel Version
         run: |
           cd ./wrt/
-          PATCHVER=$(grep -r "KERNEL_PATCHVER:=" target/linux | head -n1 | cut -d= -f2)
-          FULLVER=$(grep "LINUX_VERSION-$PATCHVER" target/linux/generic/kernel-$PATCHVER \
-                    | cut -d= -f2 \
-                    | tr -d ' ')
-          echo "Kernel Version: $PATCHVER$FULLVER"
-          echo "KERNEL_VERSION=$PATCHVER$FULLVER" >> $GITHUB_ENV
+          echo "WRT_KVER=$(find ./bin/targets/ -type f -name "*.manifest" -exec grep -oP '^kernel - \K[\d\.]+' {} \;)" >> $GITHUB_ENV
           
       - name: Trigger OWRT-ALL
-        if: env.KERNEL_VERSION == '6.12.88' || env.KERNEL_VERSION == '6.18.80' || env.KERNEL_VERSION == '6.18.88'
+        if: env.WRT_KVER == '6.18.88' || env.KERNEL_VERSION == '6.18.80' 
         run: |
           gh workflow run OWRT-ALL.yml --repo $GITHUB_REPOSITORY
