@@ -47,13 +47,13 @@ UPDATE_PACKAGE() {
 #UPDATE_PACKAGE "包名" "项目地址" "项目分支" "pkg/name，可选，pkg为从大杂烩中单独提取包名插件；name为重命名为包名"
 
 if [[ "$EXTPKG" == "true" ]]; then
-  UPDATE_PACKAGE "luci-theme-argon" "jerrykuku/luci-theme-argon" "master"
-  UPDATE_PACKAGE "luci-app-argon-config" "jerrykuku/luci-app-argon-config" "master"
-  UPDATE_PACKAGE "ddns-go" "sirpdboy/luci-app-ddns-go" "main"
+  UPDATE_PACKAGE "luci-theme-argon" "git95279527/luci-theme-argon" "master"
+  UPDATE_PACKAGE "luci-app-argon-config" "git95279527/luci-app-argon-config" "master"
+  UPDATE_PACKAGE "ddns-go" "git95279527/luci-app-ddns-go" "main"
 fi
 
 UPDATE_PACKAGE "easytier" "EasyTier/luci-app-easytier" "main"
-UPDATE_PACKAGE "luci-app-openclash" "$CLASHSOURCE" "master" "pkg"
+UPDATE_PACKAGE "luci-app-openclash" "git95279527/OpenClash" "master" "pkg"
 
 
 if [[ $WRT_REPO == *"openwrt"* ]] && [[ $WRT_REPO != *"LiBwrt"* ]]; then
