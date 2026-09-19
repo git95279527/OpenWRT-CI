@@ -28,7 +28,7 @@ else
     CORE_TYPE="$WRT_TARGET"
 fi
 
-CORE_MATE="https://github.com/$CLASHSOURCE/raw/core/master/smart/clash-linux-$CORE_TYPE.tar.gz"
+CORE_MATE="https://github.com/git95279527/OpenClash/raw/core/master/smart/clash-linux-$CORE_TYPE.tar.gz"
 
 cd root/etc/openclash/
 mkdir -p core && cd core
