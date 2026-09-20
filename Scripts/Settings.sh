@@ -26,6 +26,19 @@ echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
 echo "CONFIG_PACKAGE_luci-theme-$WRT_THEME=y" >> ./.config
 #echo "CONFIG_PACKAGE_luci-app-$WRT_THEME-config=y" >> ./.config
 
+#配置ath11k内存
+if [[ "$MEM1G" == "true" ]]; then
+  echo "CONFIG_ATH11K_MEM_PROFILE_1G=y" >> ./.config
+  echo "CONFIG_NSS_MEM_PROFILE_HIGH=y" >> ./.config
+  echo "apply ATH11K MEM PROFILE 1G!"
+fi
+
+if [[ "$MEM1G" == "false" ]]; then
+  echo "CONFIG_ATH11K_MEM_PROFILE_512M=y" >> ./.config
+  echo "CONFIG_NSS_MEM_PROFILE_MEDIUM=y" >> ./.config
+  echo "apply ATH11K MEM PROFILE 512M!"
+fi
+
 #添加turboacc
 if echo "$WRT_SOURCE" | grep -qE "immortalwrt/immortalwrt|openwrt/openwrt" || [ "$WRT_TARGET" == "X86" ]; then
          echo "CONFIG_PACKAGE_luci-app-turboacc=y" >> .config
