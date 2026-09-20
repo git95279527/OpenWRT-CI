@@ -25,9 +25,9 @@ jobs:
           OPENCLASH_VERSION=$(curl -sL 'https://raw.githubusercontent.com/vernesong/OpenClash/refs/heads/master/luci-app-openclash/Makefile' | sed -n 's/^PKG_VERSION:=//p')
           echo "Kernel: $KERNEL_VERSION"
           echo "OpenClash: $OPENCLASH_VERSION"
-          echo KERNEL_VERSION >> $GITHUB_ENV
+          echo "KERNEL_VERSION=$KERNEL_VERSION" >> "$GITHUB_ENV"
           
-      - name: Trigger OWRT-ALL
-        if: env.KERNEL_VERSION == '6.18.88' || env.KERNEL_VERSION == '6.18.80' 
+      - name: Trigger OWRT-TEST
+        if: ${{ env.KERNEL_VERSION == '6.18.88' || env.KERNEL_VERSION == '6.18.80' }}
         run: |
-          gh workflow run OWRT-ALL.yml --repo $GITHUB_REPOSITORY
+          gh workflow run OWRT-TEST.yml --repo $GITHUB_REPOSITORY
