@@ -15,7 +15,7 @@ on:
         default: 'VIKINGYFY/immortalwrt'
         required: true
         type: choice
-        options: [VIKINGYFY/immortalwrt, immortalwrt/immortalwrt, qosmio/openwrt-ipq, LiBwrt/LibWrt, gitdog9527/immortalwrt, gitdog9527/openwrt]
+        options: [VIKINGYFY/immortalwrt, immortalwrt/immortalwrt, gitdog9527/immortalwrt, git95279527/immortalwrt]
       BRANCH:
         default: 'main'
         required: true
@@ -23,7 +23,7 @@ on:
         options: [main, master, 25.12-nss, main-nss]
       CACHES:
         description: '使用上次编译缓存'
-        default: 'false'
+        default: true'
         required: false
         type: boolean
       MEM1G:
@@ -40,7 +40,7 @@ on:
         default: 'vernesong/OpenClash'
         required: true
         type: choice
-        options: [vernesong/OpenClash, gitdog9527/OpenClash]
+        options: [vernesong/OpenClash, gitdog9527/OpenClash, git95279527/OpenClash]
 
 #CI权限
 permissions: write-all
