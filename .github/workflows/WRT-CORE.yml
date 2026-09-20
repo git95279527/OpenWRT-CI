@@ -57,6 +57,7 @@ env:
   WRT_SOURCE: ${{inputs.WRT_SOURCE}}
   WRT_CACHES: ${{inputs.WRT_CACHES}}
   CLASHSOURCE: ${{inputs.CLASHSOURCE}}
+  EXTPKG: ${{inputs.EXTPKG}}
   MEM1G: ${{inputs.MEM1G}}
 
 jobs:
