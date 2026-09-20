@@ -40,6 +40,9 @@ on:
       EXTPKG:
         required: true
         type: string
+      MEM1G:
+        required: true
+        type: string
 
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -54,7 +57,7 @@ env:
   WRT_SOURCE: ${{inputs.WRT_SOURCE}}
   WRT_CACHES: ${{inputs.WRT_CACHES}}
   CLASHSOURCE: ${{inputs.CLASHSOURCE}}
-  EXTPKG: ${{inputs.EXTPKG}}
+  MEM1G: ${{inputs.EXTPKG}}
 
 jobs:
   core:
