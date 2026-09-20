@@ -61,5 +61,8 @@ if [[ $WRT_REPO == *"openwrt"* ]] && [[ $WRT_REPO != *"LiBwrt"* ]]; then
     UPDATE_PACKAGE "packages_lang_golang" "sbwml/packages_lang_golang" "23.x"
 fi
 
+#添加sqm-scripts-nss
+git clone https://github.com/JuliusBairaktaris/sqm-scripts-nss.git
+
 ##删除attendedsysupgrade
 #find ../feeds/luci ../feeds/packages -maxdepth 3 -type d -iname '*attendedsysupgrade*' -print -exec rm -rf {} + 2>/dev/null
