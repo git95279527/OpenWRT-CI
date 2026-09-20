@@ -252,4 +252,4 @@ jobs:
             内核版本：${{env.WRT_KVER}}
             插件列表：${{env.WRT_LIST}}
             OpenClash版本：${{env.OPENCLASH_VERSION}}
-            
+            1G内存配置：${{env.MEM1G}}
