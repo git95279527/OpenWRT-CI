@@ -27,6 +27,9 @@ jobs:
         run: |
           cd ./wrt/
           echo "WRT_KVER=$(find ./bin/targets/ -type f -name "*.manifest" -exec grep -oP '^kernel - \K[\d\.]+' {} \;)" >> $GITHUB_ENV
+          OPENCLASH_VER=$(sed -n 's/^PKG_VERSION:=//p' "https://raw.githubusercontent.com/vernesong/OpenClash/refs/heads/master/luci-app-openclash/Makefile" | head -n1)
+          echo "OPENCLASH_VERSION=$OPENCLASH_VER"
+          echo "WRT_KVER=$(find ./bin/targets/ -type f -name "*.manifest" -exec grep -oP '^kernel - \K[\d\.]+' {} \;)"
           
       - name: Trigger OWRT-ALL
         if: env.WRT_KVER == '6.18.88' || env.WRT_KVER == '6.18.80' 
