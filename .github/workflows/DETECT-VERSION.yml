@@ -19,19 +19,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Clone VIKINGYFY-ImmortalWrt
-        run: |
-          git clone --depth=1 --single-branch --branch main https://github.com/VIKINGYFY/immortalwrt.git ./wrt/
-
       - name: Get Kernel Version
         run: |
-          cd ./wrt/
-          echo "WRT_KVER=$(find ./bin/targets/ -type f -name "*.manifest" -exec grep -oP '^kernel - \K[\d\.]+' {} \;)" >> $GITHUB_ENV
-          OPENCLASH_VER=$(sed -n 's/^PKG_VERSION:=//p' "https://raw.githubusercontent.com/vernesong/OpenClash/refs/heads/master/luci-app-openclash/Makefile" | head -n1)
-          echo "OPENCLASH_VERSION=$OPENCLASH_VER"
-          echo "WRT_KVER=$(find ./bin/targets/ -type f -name "*.manifest" -exec grep -oP '^kernel - \K[\d\.]+' {} \;)"
+          KERNEL_VERSION=$(curl -sL 'https://raw.githubusercontent.com/VIKINGYFY/immortalwrt/refs/heads/main/target/linux/generic/kernel-6.18' | sed -n 's/^LINUX_VERSION-6\.18 = \(.*\)$/6.18\1/p')
+          OPENCLASH_VERSION=$(curl -sL 'https://raw.githubusercontent.com/vernesong/OpenClash/refs/heads/master/luci-app-openclash/Makefile' | sed -n 's/^PKG_VERSION:=//p')
+          echo "Kernel: $KERNEL_VERSION"
+          echo "OpenClash: $OPENCLASH_VERSION"
+          echo KERNEL_VERSION >> $GITHUB_ENV
           
       - name: Trigger OWRT-ALL
-        if: env.WRT_KVER == '6.18.88' || env.WRT_KVER == '6.18.80' 
+        if: env.KERNEL_VERSION == '6.18.88' || env.KERNEL_VERSION == '6.18.80' 
         run: |
           gh workflow run OWRT-ALL.yml --repo $GITHUB_REPOSITORY
